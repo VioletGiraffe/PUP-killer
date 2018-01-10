@@ -8,6 +8,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.vc*proj*
+.qmake.stash
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -23,6 +25,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+installer/*.exe
+installer/binaries/
+installer/set_qt*_paths.bat
 
 # Visual Studio 2015 cache/options directory
 .vs/

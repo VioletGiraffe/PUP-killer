@@ -1,4 +1,5 @@
 TEMPLATE = app
+TARGET = pup_killer
 
 CONFIG -= qt
 
@@ -15,6 +16,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+contains(QT_ARCH, x86_64) {
+	ARCHITECTURE = x64
+} else {
+	ARCHITECTURE = x86
+}
+
+mac* | linux*{
+	CONFIG(release, debug|release):CONFIG += Release
+	CONFIG(debug, debug|release):CONFIG += Debug
+}
+
+Release:OUTPUT_DIR=release/$${ARCHITECTURE}
+Debug:OUTPUT_DIR=debug/$${ARCHITECTURE}
+
+DESTDIR  = bin/$${OUTPUT_DIR}
+OBJECTS_DIR = build/$${OUTPUT_DIR}/$${TARGET}
+MOC_DIR     = build/$${OUTPUT_DIR}/$${TARGET}
+UI_DIR      = build/$${OUTPUT_DIR}/$${TARGET}
+RCC_DIR     = build/$${OUTPUT_DIR}/$${TARGET}
 
 win* {
 	QMAKE_CXXFLAGS += /MP /Zi /wd4275 /wd4251
